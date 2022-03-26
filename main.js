@@ -63,10 +63,18 @@ function check_sketch()
     
 }
 
-function gotResult(error, _results){
+function gotResult(error, results){
     if(error){
         console.log(error);
     }
+
+    console.log(results);
+    document.getElementById('ysketch').innerHTML = 'Your Sketch: ' + results[0].label;
+
+    document.getElementById('confidence').innerHTML = 'Confidence: ' + Math.round(results[0].confidence * 100) + '%';
+
+    utterThis = new SpeechSynthesisUtterance(results[0].label);
+    synth.speak(utterThis);
 }
 
 
